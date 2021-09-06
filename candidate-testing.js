@@ -8,7 +8,7 @@ let candidateName = "";
 let question = "Who was the first American woman in space?\n";
 let correctAnswer = "Sally Ride";
 let candidateAnswer = "";
-let questions = ["Who was the first American woman in space?", "True or false: 5 kilometer == 5000 meters?", "(5+3)/2*10=?", "Given the array [8, 'Orbit','Trajectory',45], what entry is at index 2?", "What is the minimum crew size for the ISS?"];
+let questions = ["1) Who was the first American woman in space?", "2) True or false: 5 kilometer == 5000 meters?", "3) (5+3)/2*10=?", "4) Given the array [8, 'Orbit','Trajectory',45], what entry is at index 2?", "5) What is the minimum crew size for the ISS?"];
 let correctAnswers = ["Sally Ride", "true", "40", "Trajectory", "3"];
 let candidateAnswers = [questions];
 function askForName() {
@@ -25,9 +25,9 @@ function askQuestion() {
   ;
 
   for (let i = 0; i < questions.length; i++) {
-    ;
+    
     candidateAnswers[i] = input.question(questions[i]);
-    console.log();
+   
   }
 
 
@@ -40,6 +40,7 @@ function gradeQuiz(candidateAnswers) {
 
   /*console.log(`Correct Answers:${correctAnswers}
 Candidate Answers:${candidateAnswers}`);*/
+let numCorrect = 0;
 
   console.log("Candidate Name:", candidateName)
 
@@ -48,18 +49,24 @@ Candidate Answers:${candidateAnswers}`);*/
     console.log("Correct Answer:", correctAnswers[i]);
     console.log("Your Answer:", candidateAnswers[i]);
     console.log("\n");
+  
 
+// for (i=0; i<correctAnswers.length;i++) 
 
- grade += 20
-   
-  }
-  if (grade < 80) {
-    console.log(`Status:Failed ${grade}%`)
+if (candidateAnswers[i].toLowerCase() === correctAnswers[i].toLowerCase()){
+  numCorrect++;
+} 
+} 
+  
+
+    grade = (numCorrect / questions.length) * 100;
+if (grade < 80) {
+    console.log(`Status:FAILED `)
   } else {
-    console.log(`Status:Passed ${grade}%`);
+    console.log(`Status:PASSED `);
   }
-
-return grade;
+console.log(`Overall Grade: ${grade}% (${numCorrect} of ${questions.length} responses correct)`)
+  return grade;
 }
 
 function runProgram() {
